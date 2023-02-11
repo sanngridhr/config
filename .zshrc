@@ -22,7 +22,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 # aliases
 alias cat=bat
-alias ls="exa -lFh --git"
+alias ls="exa -lFh"
 
 # terminal art and prompt
 /data/projects/sysfetch/sysfetch
