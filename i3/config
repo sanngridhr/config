@@ -183,7 +183,6 @@ default_border pixel 1
 default_floating_border pixel 1
 gaps inner 2
 gaps outer 1
-smart_gaps on
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -224,3 +223,5 @@ bindsym $mod+r mode "resize"
 # bar {
 #        status_command i3status
 # }
+
+exec --no-startup-id "feh --bg-fill /data/pictures/wallpapers/ipda90h8dk311.jpg"
