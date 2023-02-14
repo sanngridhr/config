@@ -1,0 +1,6 @@
+abbr a="abbr"
+abbr i="yay -Si"
+abbr R="yay -Rns"
+abbr S="yay -S"
+abbr v="nvim"
+abbr y="yay"
