@@ -4,7 +4,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt beep extendedglob
-bindkey -v
 # End of lines configured by zsh-newuser-install
 
 # completion
@@ -26,6 +25,8 @@ alias ls="exa -lFh --git"
 
 # export variables
 export PAGER=most
+path+=('~/.emacs.d/bin')
+export PATH
 
 # terminal art and prompt
 /data/projects/sysfetch/sysfetch

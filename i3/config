@@ -169,10 +169,8 @@ assign [class="discord"] workspace number 2
 
 bindsym $mod+m exec rhythmbox
 assign [class="Rhythmbox"] workspace number 3
-assign [class="Nicotine"] workspace number 3
 
-assign [class="ru-turikhay-tlauncher-bootstrap-Bootstrap"] workspace number 4
-assign [class="Minecraft* 1.19.3"] workspace number 4
+assign [class="Nicotine"] workspace number 5
 
 for_window [class="Xfce4-panel"] floating enable
 for_window [class="Gnome-calculator"] floating enable
