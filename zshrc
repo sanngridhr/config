@@ -25,8 +25,8 @@ alias ls="exa -lFh --git"
 
 # export variables
 export PAGER=most
-path+=('~/.emacs.d/bin')
-export PATH
+export PATH=~/.emacs.d/bin/:$PATH
+export BAT_THEME=OneHalfDark
 
 # terminal art and prompt
 /data/projects/sysfetch/sysfetch
