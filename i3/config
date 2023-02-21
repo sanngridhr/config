@@ -154,7 +154,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 # bindings and default workspaces for apps
 bindsym $mod+x exec xclicker
-bindsym $mod+n exec thunar
+bindsym $mod+d exec thunar
 bindsym $mod+g exec gimp
 bindsym $mod+o exec obs
 
@@ -164,12 +164,12 @@ assign [class="firefox"] workspace number 1
 bindsym $mod+t exec telegram-desktop
 assign [class="TelegramDesktop"] workspace number 2
 assign [class="Signal"] workspace number 2
-bindsym $mod+d exec discord
 assign [class="discord"] workspace number 2
 
 bindsym $mod+m exec rhythmbox
 assign [class="Rhythmbox"] workspace number 3
 
+bindsym $mod+n exec nicotine
 assign [class="Nicotine"] workspace number 5
 
 for_window [class="Xfce4-panel"] floating enable

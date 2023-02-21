@@ -25,7 +25,7 @@ alias ls="exa -lFh --git"
 
 # export variables
 export PAGER=most
-export PATH=~/.emacs.d/bin/:$PATH
+# export PATH=~/.local/bin:$PATH
 export BAT_THEME=OneHalfDark
 
 # terminal art and prompt
