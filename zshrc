@@ -22,6 +22,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 # aliases
 alias cat=bat
 alias ls="exa -lFh --git"
+alias sudo=doas
 
 # export variables
 export PAGER=most
