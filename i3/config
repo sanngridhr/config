@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Iosevka Term Medium 8
+font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -28,14 +28,14 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # picom for transparency
-exec --no-startup-id picom
+# exec --no-startup-id picom
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -90,10 +90,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Shift+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -157,6 +157,7 @@ bindsym $mod+x exec xclicker
 bindsym $mod+d exec thunar
 bindsym $mod+g exec gimp
 bindsym $mod+o exec obs
+bindsym $mod+c exec gnome-calculator
 
 bindsym $mod+b exec firefox
 assign [class="firefox"] workspace number 1
@@ -169,12 +170,16 @@ assign [class="discord"] workspace number 2
 bindsym $mod+m exec rhythmbox
 assign [class="Rhythmbox"] workspace number 3
 
+bindsym $mod+v exec vscodium
+assign [class="VSCodium"] workspace number 4
+
 bindsym $mod+n exec nicotine
 assign [class="Nicotine"] workspace number 5
 
 for_window [class="Xfce4-panel"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Media-viewer"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
 
 # gaps and borders
 default_border pixel 1
