@@ -22,13 +22,22 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 # aliases
 alias cat=bat
 alias ls="exa -lFh --git"
-alias sudo=doas
 
 # export variables
 export PAGER=most
+export EDITOR=nvim
 # export PATH=~/.local/bin:$PATH
 export BAT_THEME=OneHalfDark
 
 # terminal art and prompt
-/data/projects/sysfetch/sysfetch
+yass
 eval "$(starship init zsh)"
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]} r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle :compinstall filename '/home/orest/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

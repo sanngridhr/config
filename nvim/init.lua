@@ -1,20 +1,12 @@
--- show line numbers
+-- nvim setup
 vim.cmd [[set number]]
-
--- enabling theme
+vim.cmd [[set shiftwidth=4]]
 vim.cmd [[colorscheme onedark]]
 
 -- coc setup
 local keyset = vim.keymap.set
--- Autocomplete
-function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
-
 local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
-keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+keyset("i", "<TAB>", [[coc#pum#visible() ? coc#pum#confirm() : coc#on_enter()]], opts)
 
 -- packer setup
 require('packer').startup(function(use)
@@ -23,9 +15,21 @@ require('packer').startup(function(use)
   -- onedark theme
   use 'navarasu/onedark.nvim'
 
+  -- fish syntax highlighting
+  use 'dag/vim-fish'
+
+  -- ron syntax highlighting
+  use 'ron-rs/ron.vim'
+
   -- tree-sitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   --coc.nvim
   use {'neoclide/coc.nvim', branch = 'release'}
+
+  --markdown preview
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
 end)

@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/orest/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/orest/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/orest/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -93,6 +98,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/orest/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["ron.vim"] = {
+    loaded = true,
+    path = "/home/orest/.local/share/nvim/site/pack/packer/start/ron.vim",
+    url = "https://github.com/ron-rs/ron.vim"
+  },
+  ["vim-fish"] = {
+    loaded = true,
+    path = "/home/orest/.local/share/nvim/site/pack/packer/start/vim-fish",
+    url = "https://github.com/dag/vim-fish"
   }
 }
 
