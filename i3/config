@@ -170,8 +170,8 @@ assign [class="discord"] workspace number 2
 bindsym $mod+m exec rhythmbox
 assign [class="Rhythmbox"] workspace number 3
 
-bindsym $mod+v exec vscodium
-assign [class="VSCodium"] workspace number 4
+bindsym $mod+v exec "cd /data/projects && nvim-gtk"
+assign [class="NeovimGtk"] workspace number 4
 assign [class="Evince"] workspace number 4
 
 bindsym $mod+n exec nicotine
@@ -179,7 +179,6 @@ assign [class="Nicotine"] workspace number 6
 
 for_window [class="Xfce4-panel"] floating enable
 for_window [class="Gnome-calculator"] floating enable
-for_window [class="Pavucontrol"] floating enable
 
 # gaps and borders
 default_border pixel 1
@@ -227,4 +226,5 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 # }
 
+# Background with feh
 exec --no-startup-id "feh --bg-fill /data/pictures/wallpapers/ipda90h8dk311.jpg"

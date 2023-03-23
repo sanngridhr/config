@@ -21,3 +21,4 @@ cursor:
   style:
     shape: Beam
     blinking: Always
+  thickness: 0.18

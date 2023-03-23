@@ -15,8 +15,8 @@ if status is-interactive
     abbr y "yay"
     abbr e "exit"
     abbr q "exit"
-    abbr r "rm -fvI"
     abbr sp "speedtest --secure"
+    abbr r "rm -rfv"
 
    # variables
     set -x PAGER most

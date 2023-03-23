@@ -1,0 +1,6 @@
+ <distrocolor><d><b><u>|USER|<>@<distrocolor><d><b><u>|HOSTNAME|
+ <distrocolor><b>ОС<>         |PRETTY_NAME|
+ <distrocolor><b>Кернель<>    |KERNEL_VERSION|
+ <distrocolor><b>Пам'ять<>    |MEMFREE_MB| / |MEMTOTAL_MB| MiB
+ <distrocolor><b>Swap<>       |SWAPFREE_MB| / |SWAPTOTAL_MB| MiB
+ <distrocolor><b>Час роботи<> |UPTIME_HRS|:|UPTIME_MINS|:|UPTIME_SECS|
