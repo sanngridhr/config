@@ -17,6 +17,14 @@
 ;; Set monospace font
 (set-frame-font "monospace 12" nil t)
 
+;; Text width
+(setopt fill-column 99)
+(use-package emacs
+  :hook ((conf-mode
+          org-mode
+          prog-mode
+          text-mode) . display-fill-column-indicator-mode))
+
                                         ; EDITING SETTINGS
 ;; Automatch brackets
 (add-hook 'prog-mode-hook 'electric-pair-mode)
@@ -25,19 +33,14 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 3)
 
+;; Mouse in --no-window-system
+(xterm-mouse-mode t)
+
 ;; Remove *scratch* buffer
 (when (get-buffer "*scratch*") (kill-buffer "*scratch*"))
 
 ;; Save between sessions
-(desktop-save-mode)
-
-;; Set up text width
-(setopt fill-column 99)
-(use-package emacs
-  :hook ((conf-mode
-          org-mode
-          prog-mode
-          text-mode) . display-fill-column-indicator-mode))
+(desktop-save-mode t)
 
                                         ; PACKAGE SETUP
 ;; Set up straight.el
@@ -195,7 +198,7 @@
   :hook (lsp-completion-mode . my/lsp-mode-setup-completion)                           ;
   :hook (haskell-mode    ; haskell-language-server
          java-mode       ; jdtls
-         python-mode     ; python-lsp-server
+         python-mode     ; ruff-lsp
          typescript-mode ; deno lsp
          ))
 
@@ -219,10 +222,10 @@
 
 ;; Python
 (use-package lsp-pyright
-  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+  :custom (lsp-pyright-langserver-command "pyright")
   :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+                         (require 'lsp-pyright)
+                         (lsp))))
 
                                         ; CUSTOM FUNCTIONS
 ;; VSCode-like pop-up terminal
