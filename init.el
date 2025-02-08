@@ -29,6 +29,13 @@
 ;; Automatch brackets
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
+;; Autosave
+(use-package emacs
+  :hook ((conf-mode
+          org-mode
+          prog-mode
+          text-mode) . auto-save-visited-mode))
+
 ;; Indentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 3)
@@ -62,7 +69,10 @@
 
 ;; Set up use-package
 (straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
+(use-package straight
+  :custom
+  (straight-built-in-pseudo-packages '(emacs project flymake))
+  (straight-use-package-by-default t))
 
                                         ; PACKAGES
 ;; centaur tabs
@@ -74,9 +84,8 @@
   :bind
   ("C-<tab>"   . centaur-tabs-forward)
   ("C-S-<tab>" . centaur-tabs-backward)
-  :custom ; tab cycling and reordering
+  :custom ; tab cycling
   (centaur-tabs-cycle-scope 'tabs)
-  (centaur-tabs-adjust-buffer-order t)
   :custom ; display icons and modified marker
   (centaur-tabs-set-icons t)
   (centaur-tabs-icon-type 'nerd-icons)
@@ -89,13 +98,19 @@
 ;; corfu
 (use-package corfu
   :init (setq-default corfu-auto       t
-                      corfu-auto-delay 0.25
+                      corfu-auto-delay 0.5
                       corfu-popupinfo-delay 0)
+  :init (advice-add 'eglot-completion-at-point  ;
+                    :around #'cape-wrap-buster) ; eglot
   :hook (prog-mode conf-mode)
   :hook
   (corfu-mode . corfu-echo-mode)
   (corfu-mode . corfu-history-mode)
   (corfu-mode . corfu-popupinfo-mode))
+(use-package cape)
+(use-package kind-icon
+  :after corfu
+  :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 ;; dashboard
 (use-package dashboard
@@ -154,18 +169,20 @@
 
 ;; ligature
 (use-package ligature
-  :config (ligature-set-ligatures 'prog-mode '("!=" "!==" "!===" "(*" "*)" "*+" "*-" "*/" "*=" "+*"
-                                               "++" "+++" "-*" "-*-" "--" "---" "--->" "-->" "-<"
-                                               "-<-" "-<<" "->" "->-" "->>" "-|" ".>" "/*" "/="
-                                               "/>" "/\\" "::" ":::" ":=" ":>" "<!--" "<!---" "<*"
-                                               "<*>" "<-" "<--" "<---" "<---->" "<--->" "<-->"
-                                               "<->" "<." "<.>" "</" "</>" "<:" "<<-" "<<=" "<="
-                                               "<==" "<===" "<====>" "<===>" "<==>" "<=>" "<>" "<|"
-                                               "<|>" "<~~" "=!=" "=*" "=/=" "=:" "=<" "=<<" "=<="
-                                               "==" "===" "===>" "==>" "=>" "=>=" "=>>" ">-" ">="
-                                               ">>-" ">>=" "[|" "\\/" "__" "___" "{|" "|-" "|>"
-                                               "|]" "|}" "~=" "~~>")) ; Iosevka
+  :config (ligature-set-ligatures 't '("!=" "!==" "!===" "(*" "*)" "*+" "*-" "*/" "*=" "+*" "++"
+                                       "+++" ",," ",,," "-*" "-*-" "--" "---" "--->" "-->" "-<"
+                                       "-<-" "-<<" "->" "->-" "->>" "-|" ".." "..." ".>" "/*" "/="
+                                       "/>" "/\\" "::" ":::" ":=" ":>" "<!--" "<!---" "<*" "<*>"
+                                       "<-" "<--" "<---" "<---->" "<--->" "<-->" "<->" "<." "<.>"
+                                       "</" "</>" "<:" "<<-" "<<=" "<=" "<==" "<===" "<====>"
+                                       "<===>" "<==>" "<=>" "<>" "<|" "<|>" "<~~" "=!=" "=*" "=/="
+                                       "=:" "=<" "=<<" "=<=" "==" "===" "===>" "==>" "=>" "=>="
+                                       "=>>" ">-" ">=" ">>-" ">>=" "[|" "\\/" "__" "___" "{|" "|-"
+                                       "|>" "|]" "|}" "~=" "~~>")) ; Iosevka
   :hook (prog-mode conf-mode))
+
+;; magit
+(use-package magit)
 
 ;; neotree
 (use-package neotree
@@ -190,17 +207,12 @@
 
                                         ; LANGUAGES
 ;; LSP
-(use-package lsp-mode
-  :custom (lsp-completion-provider :none)                                              ; 
-  :init (defun my/lsp-mode-setup-completion ()                                         ;
-          (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults)) ; corfu
-                '(flex)))                                                              ;
-  :hook (lsp-completion-mode . my/lsp-mode-setup-completion)                           ;
-  :hook (haskell-mode    ; haskell-language-server
-         java-mode       ; jdtls
-         python-mode     ; ruff-lsp
-         typescript-mode ; deno lsp
-         ))
+(use-package eglot
+  :hook ((haskell-mode    ; haskell-language-server
+          java-mode       ; jdtls
+          python-mode     ; jedi-language-server
+          typescript-mode ; deno lsp
+          ) . eglot-ensure))
 
 ;; Emacs Lisp
 (defun disable-prog-modes ()
@@ -210,7 +222,6 @@
 
 ;; Haskell
 (use-package haskell-mode)
-(use-package lsp-haskell)
 
 ;; Nix
 (use-package nix-mode
@@ -219,13 +230,6 @@
 ;; Org
 (use-package org-modern
   :hook org-mode)
-
-;; Python
-(use-package lsp-pyright
-  :custom (lsp-pyright-langserver-command "pyright")
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))
 
                                         ; CUSTOM FUNCTIONS
 ;; VSCode-like pop-up terminal
