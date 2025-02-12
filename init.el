@@ -139,13 +139,6 @@
 (use-package elcord
   :config (elcord-mode))
 
-;; evil
-(use-package evil
-  :bind (:map evil-insert-state-map
-              ("C-S-v"   . clipboard-yank))
-  :custom (evil-undo-system 'undo-redo))
-(evil-mode t)
-
 ;; flexoki themes
 (use-package flexoki-themes
   :config (load-theme 'flexoki-themes-dark t)
@@ -172,14 +165,14 @@
   :config (ligature-set-ligatures 't '("!=" "!==" "!===" "(*" "*)" "*+" "*-" "*/" "*=" "+*" "++"
                                        "+++" ",," ",,," "-*" "-*-" "--" "---" "--->" "-->" "-<"
                                        "-<-" "-<<" "->" "->-" "->>" "-|" ".." "..." ".>" "/*" "/="
-                                       "/>" "/\\" "::" ":::" ":=" ":>" "<!--" "<!---" "<*" "<*>"
-                                       "<-" "<--" "<---" "<---->" "<--->" "<-->" "<->" "<." "<.>"
-                                       "</" "</>" "<:" "<<-" "<<=" "<=" "<==" "<===" "<====>"
+                                       "/>" "/\\" "::" ":::" "::=" ":=" ":>" "<!--" "<!---" "<*"
+                                       "<*>" "<-" "<--" "<---" "<---->" "<--->" "<-->" "<->" "<."
+                                       "<.>" "</" "</>" "<:" "<<-" "<<=" "<=" "<==" "<===" "<====>"
                                        "<===>" "<==>" "<=>" "<>" "<|" "<|>" "<~~" "=!=" "=*" "=/="
                                        "=:" "=<" "=<<" "=<=" "==" "===" "===>" "==>" "=>" "=>="
                                        "=>>" ">-" ">=" ">>-" ">>=" "[|" "\\/" "__" "___" "{|" "|-"
-                                       "|>" "|]" "|}" "~=" "~~>")) ; Iosevka
-  :hook (prog-mode conf-mode))
+                                       "|>" "|]" "|}" "~=" "~~>" )) ; Iosevka
+  :hook (conf-mode prog-mode term-mode))
 
 ;; magit
 (use-package magit)
@@ -187,11 +180,7 @@
 ;; neotree
 (use-package neotree
   :after nerd-icons
-  :bind (:map evil-normal-state-map
-              ("C-t" . neotree-toggle)
-              ("RET" . neotree-enter)
-              ("SPC" . neotree-quick-look))
-  :custom ; projectile support
+  :custom
   (projectile-switch-project-action 'neotree-projectile-action)
   :custom
   (neo-theme 'nerd-icons)
@@ -211,6 +200,7 @@
   :hook ((haskell-mode    ; haskell-language-server
           java-mode       ; jdtls
           python-mode     ; jedi-language-server
+          tuareg-mode     ; ocamllsp
           typescript-mode ; deno lsp
           ) . eglot-ensure))
 
@@ -226,6 +216,9 @@
 ;; Nix
 (use-package nix-mode
   :mode "\\.nix\\'")
+
+;; OCaml
+(use-package tuareg)
 
 ;; Org
 (use-package org-modern
