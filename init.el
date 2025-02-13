@@ -209,8 +209,9 @@
 ;; LSP
 (use-package eglot
   :hook ((haskell-mode    ; haskell-language-server
-          java-mode       ; jdtls
+          nix-mode        ; nil
           python-mode     ; jedi-language-server
+          tuareg-mode     ; ocamllsp
           typescript-mode ; deno lsp
           ) . eglot-ensure))
 
@@ -226,6 +227,9 @@
 ;; Nix
 (use-package nix-mode
   :mode "\\.nix\\'")
+
+;; OCaml
+(use-package tuareg)
 
 ;; Org
 (use-package org-modern
