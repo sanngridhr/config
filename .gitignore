@@ -12,6 +12,8 @@ emacs/*
 !emacs/GNUEmacs.png
 !emacs/tree-sitter
 
+environment.d/10-home-manager.conf
+
 fish/completions
 fish/conf.d
 fish/fish_variables

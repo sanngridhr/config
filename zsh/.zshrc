@@ -1,6 +1,5 @@
 # XDG fixes
 export XDG_CONFIG_HOME="$HOME/.config"
-export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/pythonrc
@@ -11,15 +10,11 @@ alias d-fi="d-fi -conf $XDG_CONFIG_HOME/d-fi/config.json"
 
 export XDG_DATA_HOME="$HOME/.local/share"
 export ANDROID_HOME="$XDG_DATA_HOME"/android
-export CABAL_DIR="$XDG_DATA_HOME"/cabal
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GOPATH="$XDG_DATA_HOME"/go
-export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export NIMBLE_DIR="$XDG_DATA_HOME"/nimble
 export OPAMROOT="$XDG_DATA_HOME"/opam
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export SONARLINT_USER_HOME="$XDG_DATA_HOME/sonarlint"
-export SSB_HOME="$XDG_DATA_HOME"/zoom
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export W3M_DIR="$XDG_DATA_HOME"/w3m
@@ -70,7 +65,7 @@ if [[ $- == *i* ]]; then
    bindkey "^[[1;5D" backward-word # C-Left
 
    # Variables
-   export EDITOR=vim
+   export EDITOR="emacs -nw"
    export FZF_DEFAULT_COMMAND="fd -H"
    export GPG_TTY=$(tty)
    export GUILE_AUTO_COMPILE=0
@@ -86,6 +81,10 @@ if [[ $- == *i* ]]; then
    alias ls="eza -F -Ghl --git --icons --sort type"
    alias mv="mv -v"
    alias mycofetch="$HOME/.local/bin/mycofetch -m $XDG_CONFIG_HOME/mycofetch/template.mfc"
+   alias nix-shell="nix-shell --run $SHELL"
+   alias t503d="sudo nix-shell --run 'python3 /data/build/10moons-t503-driver/driver.py' \
+                     -p python3 python3Packages.evdev python3Packages.pyusb python3Packages.pyyaml"
+   alias nixos-rebuild="nixos-rebuild --log-format multiline-with-logs --use-remote-sudo"
    alias rg="rg -ip"
    alias xclass="xprop | grep WM_CLASS | awk '{ print $4 }'"
    find /opt/plan9 &> /dev/null && alias 9=/opt/plan9/bin/9
@@ -105,33 +104,6 @@ if [[ $- == *i* ]]; then
 
    # Abbreviations
    zcomet load olets/zsh-abbr
-
-   # NOTE: keep other abbreviations in $XDG_CONFIG_HOME/zsh-abbr/user-abbreviations
-   # NOTE: you can add to that file by `abbr add abbreviation=expansion`
-   AUR_HELPER=paru
-   SUDO=sudo
-   if command -v $AUR_HELPER &> /dev/null; then
-      [[ $AUR_HELPER == yay ]] && abbr -q -S y=yay
-      [[ $AUR_HELPER == paru ]] && abbr -q -S p=paru
-      abbr -q -S F="$AUR_HELPER -Fy"
-      abbr -q -S i="$AUR_HELPER -Qi"
-      abbr -q -S l="$AUR_HELPER -Ql"
-      abbr -q -S R="$AUR_HELPER -Rns"
-      abbr -q -S s="$AUR_HELPER -Ss"
-      abbr -q -S S="$AUR_HELPER -S"
-   elif command -v dnf &> /dev/null; then
-      abbr -q -S i="dnf info"
-      abbr -q -S R="$SUDO dnf remove"
-      abbr -q -S s="dnf search"
-      abbr -q -S S="$SUDO dnf install"
-      abbr -q -S u="$SUDO dnf upgrade"
-   elif command -v xbps-install &> /dev/null; then
-      abbr -q -S i="xbps-query"
-      abbr -q -S R="$SUDO xbps-remove -Rv"
-      abbr -q -S s="xbps-query -Rs"
-      abbr -q -S S="$SUDO xbps-install -Syv"
-      abbr -q -S u="$SUDO xbps-install -Suv"
-   fi
 
    # Syntax highlighting
    zcomet load zdharma-continuum/fast-syntax-highlighting
