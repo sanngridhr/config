@@ -115,7 +115,4 @@ if [[ $- == *i* ]]; then
 
    # Autosuggestions
    zcomet load zsh-users/zsh-autosuggestions
-
-   # Starship
-   eval "$(starship init zsh)"
 fi
