@@ -1,3 +1,0 @@
-[submodule "emacs"]
-	path = emacs
-	url = git@codeberg.org:orest58008/emacs.git
