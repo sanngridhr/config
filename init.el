@@ -1,4 +1,6 @@
 ;; -*- lexical-binding: t; -*-
+                                        ; ELPACA SETUP
+(load (expand-file-name "elpaca-setup" user-emacs-directory))
 
                                         ; VISUAL SETTINGS
 ;; Disable useless bars and startup screen
@@ -9,6 +11,7 @@
 ;; Display line and column numbers
 (column-number-mode)
 (use-package emacs
+  :ensure nil
   :hook ((conf-mode
           org-mode
           prog-mode
@@ -20,6 +23,7 @@
 ;; Text width
 (setopt fill-column 99)
 (use-package emacs
+  :ensure nil
   :hook ((conf-mode
           org-mode
           prog-mode
@@ -31,6 +35,7 @@
 
 ;; Autosave
 (use-package emacs
+  :ensure nil
   :hook ((conf-mode
           org-mode
           prog-mode
@@ -49,32 +54,9 @@
 ;; Save between sessions
 (desktop-save-mode t)
 
-                                        ; PACKAGE SETUP
-;; Set up straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name
-        "straight/repos/straight.el/bootstrap.el"
-        (or (bound-and-true-p straight-base-dir)
-            user-emacs-directory)))
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-;; Set up use-package
-(straight-use-package 'use-package)
-(use-package straight
-  :custom
-  (straight-built-in-pseudo-packages '(emacs project flymake))
-  (straight-use-package-by-default t))
-
                                         ; PACKAGES
+(setq use-package-always-ensure t)
+
 ;; centaur tabs
 (use-package centaur-tabs
   :after nerd-icons
@@ -114,8 +96,12 @@
 
 ;; dashboard
 (use-package dashboard
+  :ensure (:wait t)
   :after nerd-icons
-  :config (dashboard-setup-startup-hook)
+  :config ; enable dashboard
+  (add-hook 'elpaca-after-init-hook #'dashboard-insert-startupify-lists)
+  (add-hook 'elpaca-after-init-hook #'dashboard-initialize)
+  (dashboard-setup-startup-hook)
   :custom ; banner config
   (dashboard-banner-logo-title nil)
   (dashboard-startup-banner (concat user-emacs-directory "GNUEmacs.png"))
@@ -141,6 +127,7 @@
 
 ;; evil
 (use-package evil
+  :ensure (:wait t)
   :bind (:map evil-insert-state-map
               ("C-S-v"   . clipboard-yank))
   :custom (evil-undo-system 'undo-redo))
@@ -148,6 +135,7 @@
 
 ;; flexoki themes
 (use-package flexoki-themes
+  :demand t
   :config (load-theme 'flexoki-themes-dark t)
   :custom
   (flexoki-themes-use-bold-builtins t)
