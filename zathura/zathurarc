@@ -1,5 +1,0 @@
-include	flexoki-dark
-set	selection-clipboard	clipboard
-
-map	Left	navigate previous
-map	Right	navigate next
