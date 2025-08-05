@@ -1,17 +1,3 @@
-* Currently using
-** Looks
-+ Theme - Flexoki Dark
-+ Icons - Papirus
-+ Telegram theme - [[https://t.me/addtheme/FECO9Ihr3SC0lCgA]]
-** System
-+ OS - NixOS
-** Desktop
-+ DE - GNOME
-** Terminal
-+ Shell - zsh
-+ Terminal emulator - ghostty
-** Apps
-+ Browser - Firefox
-+ Soulseek client - Nicotine+
-+ Bittorrent client - transmission-gtk
-+ Text editor - GNU Emacs
+# -*- mode: org -*-
+
+Yaharr! This here be me configs, plunder them freely as per [[LICENSE]]
