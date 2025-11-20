@@ -1,10 +1,15 @@
 font-family = monospace
 font-size = 10
 
-theme = flexoki-dark
-adw-toolbar-style = raised
+theme = dark:Flexoki Dark,light:Flexoki Light
+gtk-toolbar-style = raised
+gtk-titlebar-style = tabs
 
+window-decoration = server
 window-padding-x = 3
 
 linux-cgroup = always
 term = xterm-256color
+
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
