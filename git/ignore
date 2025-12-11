@@ -1,6 +1,12 @@
 !LICENSE
+*.bak
 *.install
 *\~
 *log
+.devcontainer
+.devcontainer.json
+.env
+.venv
+.idea
 ?build
 \#*\#
