@@ -3,7 +3,6 @@ font-size = 10
 
 theme = dark:Flexoki Dark,light:Flexoki Light
 gtk-toolbar-style = raised
-gtk-titlebar-style = tabs
 
 window-decoration = server
 window-padding-x = 3
