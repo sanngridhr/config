@@ -1,0 +1,30 @@
+{
+    // inlay hints
+    "editor.inlayHints.enabled": "on",
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    // ligatures
+    "terminal.integrated.fontLigatures.enabled": true,
+    "editor.fontLigatures": true,
+    // theme
+    "workbench.colorTheme": "Visual Studio Dark",
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredDarkColorTheme": "Flexoki Dark",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    // misc
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+}
