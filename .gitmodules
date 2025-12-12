@@ -1,3 +1,0 @@
-[submodule "emacs"]
-	path = emacs
-	url = git@git.sr.ht:~orest58008/emacs
