@@ -190,6 +190,12 @@
   :init (projectile-mode t)
   :hook (project-find-functions . project-projectile))
 
+;; reverse-im
+(use-package reverse-im
+  :demand t
+  :custom (reverse-im-input-methods '("ukrainian-computer"))
+  :config (reverse-im-mode t))
+
                                         ; LANGUAGES
 ;; LSP
 (use-package eglot
@@ -237,7 +243,6 @@
   (kbd "C-`") 'delete-window)
 
 ;; Elpaca-friendly desktop-save
-(setq desktop-restore-eager 0)
 (defun my/save-desktop ()
   (desktop-save-mode 1)
   (desktop-read)
