@@ -51,9 +51,6 @@
 ;; Remove *scratch* buffer
 (when (get-buffer "*scratch*") (kill-buffer "*scratch*"))
 
-;; Save between sessions
-(desktop-save-mode t)
-
                                         ; PACKAGES
 (setq use-package-always-ensure t)
 
@@ -80,7 +77,7 @@
 ;; corfu
 (use-package corfu
   :init (setq-default corfu-auto       t
-                      corfu-auto-delay 0.5
+                      corfu-auto-delay 0.1
                       corfu-popupinfo-delay 0)
   :init (advice-add 'eglot-completion-at-point  ;
                     :around #'cape-wrap-buster) ; eglot
@@ -238,3 +235,10 @@
   (kbd "C-`") 'my/popup-term-below)
 (evil-define-key 'insert 'term-mode-map
   (kbd "C-`") 'delete-window)
+
+;; Elpaca-friendly desktop-save
+(defun my/save-desktop ()
+  (desktop-save-mode 1)
+  (desktop-read)
+  (dashboard-open))
+(add-hook 'elpaca-after-init-hook #'my/save-desktop)
